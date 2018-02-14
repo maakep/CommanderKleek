@@ -8,4 +8,8 @@ Thank.
 
 # Building & running
 
+## Dev
     npm run dev
+
+## Prod
+    npm run deploy
