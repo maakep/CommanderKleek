@@ -10,6 +10,7 @@ export default class extends Phaser.State {
   init () {}
   preload () {
     this.kills = 0;
+    this.experience = 0; // TODO: Experience. Set level requirements in separate object. track levels and give skill ups on level ups.
     this.food = 200;
     this.gold = 200;
     // Stats
@@ -52,7 +53,7 @@ export default class extends Phaser.State {
 
   render () {
     if (__DEV__) {
-      this.game.debug.spriteInfo(this.attackButton, 32, 32)
+      //this.game.debug.spriteInfo(this.attackButton, 32, 32)
     }
   }
 }

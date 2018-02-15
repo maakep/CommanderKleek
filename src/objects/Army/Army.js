@@ -1,30 +1,33 @@
 import Footman from './Footman';
-import AddFootman from '../Button';
+import { CostButton } from '../Button';
+import Stats from './ArmyStats';
 
 export default class {
     constructor(state) {
-        this.footmanCost = 100;
-
         this.footmen = new Array();
         this.state = state;
 
-        this.addFootman = new AddFootman(state, 
-                                        state.world.width - 32, 
-                                        state.world.height - 64, 
-                                        'button', 
-                                        () => { this.BuyFootman(); });
-        this.addFootman.scale.setTo(0.3);
+        this.addFootman = new CostButton(state, 
+            state.world.width - 32, 
+            state.world.height - 64, 
+            'button',
+            0.3,
+            () => { this.Buy(Stats.Footman); },
+            Stats.Footman.Cost);
+        
+        this.addPikeman = new CostButton(state,
+            state.world.width - 84,
+            state.world.height - 64,
+            'button',
+            0.3,
+            () => { this.Buy(Stats.Archer); },
+            Stats.Archer.Cost);
+
     }
-    BuyFootmen(quantity) {
-        for (let i = 0; i < quantity; i++)
-            BuyFootman();
-    }
-    BuyFootman() {
-        if (this.state.gold >= this.footmanCost) {
-            this.footmen.push(new Footman(this.state));
-            this.state.Gold(-this.footmanCost);                
-        } else {
-            // Mwep mwop, not enough gold. Construct additional pylons
+    Buy(unit) {
+        if (this.state.gold >= unit.Cost) {
+            unit.Owned.push(new unit.UnitType(this.state));
+            this.state.Gold(-unit.Cost);
         }
     }
 }
