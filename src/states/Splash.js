@@ -15,9 +15,22 @@ export default class extends Phaser.State {
     //
     this.load.image('attack', 'assets/images/green circle.png');
     this.load.image('player', './assets/images/deathzone.png');
+    this.load.image('button', './assets/images/Button.png');    
   }
 
   create () {
-    this.state.start('Game')
+    const bannerText = 'Commander Kleek'
+    let banner = this.add.text(this.world.centerX, 80, bannerText, {
+      font: '40px MedievalSharp',
+      fill: '#77BFA3',
+      smoothed: false
+    });
+
+    banner.padding.set(10, 16);
+    banner.anchor.setTo(0.5);
+    var _ = this;
+    this.game.input.onDown.add(function(e) {   
+      _.state.start('Game');
+    });
   }
 }
