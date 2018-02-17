@@ -29,6 +29,6 @@ export class UnitBase {
 
   Die() {
     this.state.time.events.remove(this.loop);
-    this.unit.Owned.splice(this.unit.Owned.indexOf(this), 1);
+    this.unit.Owned.splice(this.unit.Owned.array.indexOf(this), 1);
   }
 }   

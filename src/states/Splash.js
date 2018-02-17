@@ -29,8 +29,8 @@ export default class extends Phaser.State {
     banner.padding.set(10, 16);
     banner.anchor.setTo(0.5);
     var _ = this;
-    this.game.input.onDown.add(function(e) {   
+    // this.game.input.onDown.add(function(e) {   
       _.state.start('Game');
-    });
+    // });
   }
 }

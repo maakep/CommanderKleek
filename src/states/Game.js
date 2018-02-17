@@ -1,9 +1,10 @@
 /* globals __DEV__ */
 import Phaser from 'phaser';
-import AttackButton from '../objects/AttackButton';
 import Army from '../objects/Army/Army';
 import Player from '../objects/Player';
-import Text from '../objects/Text';
+import { Text } from '../objects/Text';
+import { Button } from '../objects/Button';
+import PlayerStats from '../objects/PlayerStats';
 
 export default class extends Phaser.State {
 
@@ -21,9 +22,9 @@ export default class extends Phaser.State {
   create () {
     this.army = new Army(this);
 
-    this.attackButton = new AttackButton(this);
+    this.attackButton = new Button(this, this.world.centerX, this.world.centerY, 'attack', 1, () => this.Kill(PlayerStats.KillsPerHit));
 
-    this.killText = new Text(this, this.world.centerX, 32, this.kills);
+    this.killText = new Text(this, this.world.centerX, 32, this.kills, 75);
 
     this.player = new Player(this);
 
@@ -49,6 +50,10 @@ export default class extends Phaser.State {
   Gold(quantity) {
     this.gold += quantity;
     this.goldText.text = "Gold: " + Math.floor(this.gold);
+  }
+
+  update() {
+
   }
 
   render () {

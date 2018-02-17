@@ -22,4 +22,11 @@ export class Footman extends UnitBase {
   constructor (state, unit) {
     super(state, unit);
   }
+
+  Activity() { 
+    if (this.unit.Stats.ChanceToDie >= this.state.rnd.integerInRange(0, 100))
+      super.Die();
+    else 
+      super.Activity();
+  }
 }

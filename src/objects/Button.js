@@ -5,6 +5,7 @@ export class Button extends Phaser.Button {
     super(state.game, x, y, image);
     this.state = state;
     this.origScale = scale;
+    this.interactable = true;
 
     this.anchor.setTo(0.5);
     this.scale.setTo(scale);
@@ -21,7 +22,8 @@ export class Button extends Phaser.Button {
   }
 
   Down() {
-    this.scale.setTo(this.origScale * 0.9);
+    if (this.interactable)
+      this.scale.setTo(this.origScale * 0.9);
   }
 
   Up() {
@@ -37,8 +39,10 @@ export class CostButton extends Button {
 
   update() {
     if (this.state.gold < this.cost) {
+      this.interactable = false;
       this.tint = 0xff0000;
     } else {
+      this.interactable = true;
       this.tint = 0xffffff;
     }
   }
