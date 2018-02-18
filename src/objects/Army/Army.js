@@ -46,7 +46,7 @@ export default class {
         this.footmanText = new ArrayLengthText(this.state, this.buyFarmer.x - 20, this.buyFarmer.y + 20, Stats.Farmer.Owned.array, 15);
         
         this.buyMiner = new CostButton(state,
-            x - spacing * 0,
+            x - spacing * 1,
             y - spacing * 1,
             'MinerButton',
             0.3,

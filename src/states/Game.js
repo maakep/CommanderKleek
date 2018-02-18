@@ -17,6 +17,7 @@ export default class extends Phaser.State {
     // Stats
     this.foodPerKill = 0.2;
     this.goldPerKill = 0.7;
+    this.stage.disableVisibilityChange = true;
   }
 
   create () {

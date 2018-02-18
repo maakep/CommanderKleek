@@ -13,13 +13,14 @@ export default class extends Phaser.State {
     //
     // load your assets
     //
-    this.load.spritesheet('footmanButton', './assets/images/FootmanButton.png');
-    this.load.spritesheet('ArcherButton', './assets/images/ArcherButton');
-    this.load.spritesheet('FarmerButton', './assets/images/FarmerButton');
-    this.load.spritesheet('MinerButton', './assets/images/MinerButton');
+    this.load.spritesheet('FootmanButton', './assets/images/FootmanButton.png', 128, 128);
+    this.load.spritesheet('ArcherButton', './assets/images/ArcherButton.png', 128, 128);
+    this.load.spritesheet('FarmerButton', './assets/images/FarmerButton.png', 128, 128);
+    this.load.spritesheet('MinerButton', './assets/images/MinerButton.png', 128, 128);
     this.load.image('attack', 'assets/images/green circle.png');
     this.load.image('player', './assets/images/deathzone.png');
-    this.load.image('button', './assets/images/Button.png');    
+    this.load.image('button', './assets/images/Button.png');
+    this.load.spritesheet('DudeLookingButton', './assets/images/DudeLooking.png', 128, 128);
   }
 
   create () {
@@ -34,6 +35,7 @@ export default class extends Phaser.State {
     banner.anchor.setTo(0.5);
     var _ = this;
     // this.game.input.onDown.add(function(e) {   
+      // Do some cool graphic when changing scene. Curtains? Fading?
       _.state.start('Game');
     // });
   }
