@@ -16,7 +16,7 @@ export default class {
         this.buyFootman = new CostButton(state, 
             x, 
             y, 
-            'button',
+            'FootmanButton',
             0.3,
             () => { this.Buy(Stats.Footman); },
             Stats.Footman.Cost
@@ -26,7 +26,7 @@ export default class {
         this.buyArcher = new CostButton(state,
             x - spacing * 1,
             y,
-            'button',
+            'ArcherButton',
             0.3,
             () => { this.Buy(Stats.Archer); },
             Stats.Archer.Cost
@@ -38,19 +38,17 @@ export default class {
         this.buyFarmer = new CostButton(state,
             x - spacing * 0,
             y - spacing * 1,
-            'button',
+            'FarmerButton',
             0.3,
             () => { this.Buy(Stats.Farmer); },
             Stats.Farmer.Cost
         );
         this.footmanText = new ArrayLengthText(this.state, this.buyFarmer.x - 20, this.buyFarmer.y + 20, Stats.Farmer.Owned.array, 15);
         
-
-        // Row 3
         this.buyMiner = new CostButton(state,
             x - spacing * 0,
-            y - spacing * 2,
-            'button',
+            y - spacing * 1,
+            'MinerButton',
             0.3,
             () => { this.Buy(Stats.Miner); },
             Stats.Miner.Cost
