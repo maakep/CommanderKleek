@@ -19,11 +19,14 @@ export class ArrayLengthText extends Phaser.Text {
             smoothed: false });
         this.anchor.setTo(anchorX, anchorY);
         this.array = array;
+        this.state = state;
         state.game.add.existing(this);
     }
 
     update() {
-        if (this.array.length != this.text)
+        if (this.array.length != this.text){
             this.text = this.array.length;
+            this.state.army.UpdatePopulation();
+        }
     }
 }

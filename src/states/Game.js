@@ -10,10 +10,13 @@ export default class extends Phaser.State {
 
   init () {}
   preload () {
+    this.playerStats = PlayerStats;
+
     this.kills = 0;
     this.experience = 0; // TODO: Experience. Set level requirements in separate object. track levels and give skill ups on level ups.
     this.food = 200;
-    this.gold = 200;
+    this.gold = 0;
+    this.population = 0;
     // Stats
     this.foodPerKill = 0.2;
     this.goldPerKill = 0.7;
@@ -34,6 +37,10 @@ export default class extends Phaser.State {
 
     this.foodText = new Text(this, 32, this.world.height - 30, "Food: " + this.food);
     this.foodText.anchor.setTo(0, 1);
+
+    let length = this.army.GetPopulation();
+    this.populationText = new Text(this, 32, this.world.height - 50, "Population: " + length + " / " + PlayerStats.PopulationLimit);
+    this.populationText.anchor.setTo(0, 1);
   }
 
   Food(quantity) {
@@ -54,7 +61,7 @@ export default class extends Phaser.State {
   }
 
   update() {
-
+    this.population = this.army.GetPopulation();
   }
 
   render () {

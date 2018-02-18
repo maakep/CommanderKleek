@@ -9,7 +9,6 @@ export class Button extends Phaser.Button {
 
     this.anchor.setTo(0.5);
     this.scale.setTo(scale);
-    this.inputEnabled = true;
     this.events.onInputUp.add(this.Up, this);
     this.events.onInputDown.add(this.Down, this);
     this.events.onInputOver.add(this.Over, this);
@@ -26,23 +25,26 @@ export class Button extends Phaser.Button {
   }
 
   Up() {
-    this.scale.setTo(this.origScale * 1);
+    if (this.interactable)    
+      this.scale.setTo(this.origScale * 1);
   }
 }
 
 export class CostButton extends Button {
-  constructor (state, x, y, image, scale, func, cost) {
+  constructor (state, x, y, image, scale, func, unit) {
     super(state, x, y, image, scale, func);
-    this.cost = cost;
+    this.unit = unit;
   }
 
   update() {
-    if (this.state.gold < this.cost) {
+    if (this.unit.Cost > this.state.gold ||  
+        this.state.population + this.unit.PopulationSize > this.state.playerStats.PopulationLimit) {
       this.interactable = false;
       this.tint = 0xff0000;
     } else {
       this.interactable = true;
       this.tint = 0xffffff;
     }
+    this.input.enabled = this.interactable;
   }
 }

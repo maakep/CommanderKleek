@@ -3,9 +3,10 @@ import { QuantityArray } from '../../utils';
 
 export default {
     Footman: {
-        Cost: 100,
+        Cost: 30,
         UnitType: Units.Footman,
         Owned: new QuantityArray(),
+        PopulationSize: 1,
         Stats: {
             FoodPerActivity: -3,
             GoldPerActivity : -0.3,
@@ -18,6 +19,7 @@ export default {
         Cost: 150,
         UnitType: Units.Archer,
         Owned: new QuantityArray(),
+        PopulationSize: 1,
         Stats: {
             FoodPerActivity: 0,
             GoldPerActivity : 0,
@@ -29,6 +31,7 @@ export default {
         Cost: 100,
         UnitType: Units.Farmer,
         Owned: new QuantityArray(),
+        PopulationSize: 1,
         Stats: {
             FoodPerActivity: 40,
             GoldPerActivity : -5,
@@ -40,6 +43,7 @@ export default {
         Cost: 200,
         UnitType: Units.Generic,
         Owned: new QuantityArray(),
+        PopulationSize: 1,
         Stats: {
             FoodPerActivity: -10,
             GoldPerActivity : 40,

@@ -20,12 +20,10 @@ export class QuantityArray {
         this.state = state;
     }
 
-    // this isnt working
     push(object) {
         this.array.push(object);
     }
 
-    // this isnt working
     splice(start, deleteCount = 1) {
         this.array.splice(start, deleteCount);
     }
