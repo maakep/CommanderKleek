@@ -41,6 +41,11 @@ export default class extends Phaser.State {
     let length = this.army.GetPopulation();
     this.populationText = new Text(this, 32, this.world.height - 50, "Population: " + length + " / " + PlayerStats.PopulationLimit);
     this.populationText.anchor.setTo(0, 1);
+
+    // Do this.
+    this.lvlupScreen = this.add.group();    
+    // this.lvlupScreen.add();
+
   }
 
   Food(quantity) {

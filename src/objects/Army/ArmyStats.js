@@ -1,18 +1,43 @@
 import * as Units from './Units';
 import { QuantityArray } from '../../utils';
 
-export default {
+var stats = {
     Footman: {
         Cost: 30,
         UnitType: Units.Footman,
         Owned: new QuantityArray(),
         PopulationSize: 1,
         Stats: {
-            FoodPerActivity: -3,
-            GoldPerActivity : -0.3,
-            KillsPerActivity: 3, 
-            ActivityCooldown: 4,
-            ChanceToDie: 5,
+            FoodPerActivity: () => {
+                return {
+                    Value: -3,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
+            GoldPerActivity : () => {
+                return {
+                    Value: -0.3,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
+            KillsPerActivity: () => {
+                return {
+                    Value: 3,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            }, 
+            ActivityCooldown: () => {
+                return {
+                    Value: 4,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
+            ChanceToDie: () => {
+                return {
+                    Value: 3,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
         },
     },
     Archer: {
@@ -21,10 +46,30 @@ export default {
         Owned: new QuantityArray(),
         PopulationSize: 1,
         Stats: {
-            FoodPerActivity: 0,
-            GoldPerActivity : 0,
-            KillsPerActivity: 1, 
-            ActivityCooldown: 1,
+            FoodPerActivity: () => {
+                return {
+                    Value: -0.5,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
+            GoldPerActivity : () => {
+                return {
+                    Value: -3,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
+            KillsPerActivity: () => {
+                return {
+                    Value: 1,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            }, 
+            ActivityCooldown: () => {
+                return {
+                    Value: 1,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
         },
     },
     Farmer: {
@@ -33,10 +78,30 @@ export default {
         Owned: new QuantityArray(),
         PopulationSize: 1,
         Stats: {
-            FoodPerActivity: 40,
-            GoldPerActivity : -5,
-            KillsPerActivity: 0, 
-            ActivityCooldown: 10,
+            FoodPerActivity: () => {
+                return {
+                    Value: 30,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
+            GoldPerActivity : () => {
+                return {
+                    Value: -10,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
+            KillsPerActivity: () => {
+                return {
+                    Value: 0,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            }, 
+            ActivityCooldown: () => {
+                return {
+                    Value: 10,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
         },
     },
     Miner: {
@@ -45,10 +110,36 @@ export default {
         Owned: new QuantityArray(),
         PopulationSize: 1,
         Stats: {
-            FoodPerActivity: -10,
-            GoldPerActivity : 40,
-            KillsPerActivity: 0, 
-            ActivityCooldown: 10,
+            FoodPerActivity: () => {
+                return {
+                    Value: -10,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
+            GoldPerActivity : () => {
+                return {
+                    Value: 30,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
+            KillsPerActivity: () => {
+                return {
+                    Value: 0,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            }, 
+            ActivityCooldown: () => {
+                return {
+                    Value: 10,
+                    LevelUp: function() {GenericLevelUp(this)},
+                }
+            },
         },
     }
+}
+
+export default stats;
+
+function GenericLevelUp(stat) {
+    return stat.Value *= 1.2;
 }

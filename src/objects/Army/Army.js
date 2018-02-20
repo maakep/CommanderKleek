@@ -6,7 +6,8 @@ export default class {
     constructor(state) {
         this.state = state;
         this.stats = Stats;
-        
+        Stats.Footman.Stats.FoodPerActivity().Value = 
+            Stats.Footman.Stats.FoodPerActivity().LevelUp();
         let spacing = 62;
         let x = state.world.width - 32;
         let y = (state.world.height - 64);

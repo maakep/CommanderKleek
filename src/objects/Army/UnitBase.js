@@ -5,12 +5,12 @@ export class UnitBase {
     this.stats = unit.Stats;
     this.ticksWithoutFood = 0;
 
-    this.loop = state.time.events.loop(this.stats.ActivityCooldown * 1000, this.Activity, this);
+    this.loop = state.time.events.loop(this.stats.ActivityCooldown().Value * 1000, this.Activity, this);
   }
 
   Activity() {
-    if (this.state.food >= -this.stats.FoodPerActivity 
-    && this.state.gold >= -this.stats.GoldPerActivity) {
+    if (this.state.food >= -this.stats.FoodPerActivity().Value 
+    && this.state.gold >= -this.stats.GoldPerActivity().Value) {
       this.DoActivity();
     } else {        
       this.ticksWithoutFood++;
@@ -21,9 +21,9 @@ export class UnitBase {
   }
 
   DoActivity() {
-    this.state.Food(this.stats.FoodPerActivity);
-    this.state.Gold(this.stats.GoldPerActivity);
-    this.state.Kill(this.stats.KillsPerActivity);
+    this.state.Food(this.stats.FoodPerActivity().Value);
+    this.state.Gold(this.stats.GoldPerActivity().Value);
+    this.state.Kill(this.stats.KillsPerActivity().Value);
     this.ticksWithoutFood = 0;
   }
 
