@@ -20,6 +20,9 @@ export default class extends Phaser.State {
     this.load.image('attack', 'assets/images/green circle.png');
     this.load.image('player', './assets/images/deathzone.png');
     this.load.image('button', './assets/images/Button.png');
+    this.load.image('lvlupbackground', './assets/images/lvlup background.png');
+    this.load.image('exp bar', './assets/images/Experience Bar.png');
+    this.load.image('exp boarder', './assets/images/Experience boarder.png');
     this.load.spritesheet('DudeLookingButton', './assets/images/DudeLooking.png', 128, 128);
   }
 

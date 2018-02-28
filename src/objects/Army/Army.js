@@ -10,7 +10,7 @@ export default class {
             Stats.Footman.Stats.FoodPerActivity().LevelUp();
         let spacing = 62;
         let x = state.world.width - 32;
-        let y = (state.world.height - 64);
+        let y = (state.world.height - 84);
 
         
         // Row 1
