@@ -1,13 +1,13 @@
 import Phaser from 'phaser'
 
 export class Button extends Phaser.Button {
-  constructor (state, x, y, image, scale, func) {
+  constructor (state, x, y, image, scale, func, anchorX = 0.5, anchorY = 0.5) {
     super(state.game, x, y, image, func, 2, 1, 3);
     this.state = state;
     this.origScale = scale;
     this.interactable = true;
 
-    this.anchor.setTo(0.5);
+    this.anchor.setTo(anchorX, anchorY);
     this.scale.setTo(scale);
     this.events.onInputUp.add(this.Up, this);
     this.events.onInputDown.add(this.Down, this);

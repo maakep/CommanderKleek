@@ -16,6 +16,8 @@ export default class extends Phaser.State {
     this.kills = 0;
     this.experience = 0; // TODO: Experience. Set level requirements in separate object. track levels and give skill ups on level ups.
     this.experienceNextLevel = 200;
+    this.skillPoints = 0;
+
     this.food = 200;
     this.gold = 0;
     this.population = 0;
@@ -27,7 +29,8 @@ export default class extends Phaser.State {
 
     this.attackButton = new Button(this, this.world.centerX, this.world.centerY, 'attack', 1, () => this.Kill(this.playerStats.KillsPerHit));
 
-    this.killText = new Text(this, this.world.centerX, 32, this.kills, 75);    
+    this.killText = new Text(this, this.world.centerX, 32, this.kills, 75);
+     
 
     this.goldText = new Text(this, 32, this.world.height - 50, "Gold: " + this.gold);
     this.goldText.anchor.setTo(0, 1);
@@ -40,10 +43,22 @@ export default class extends Phaser.State {
     this.populationText.anchor.setTo(0, 1);
 
     // WIP >
-    
     this.player = new ExperienceBar(this);
+    
+    this.lvlupButton = new Button(this, this.world.centerX, this.world.height - 65, 'button', 0.3, () => { this.lvlupScreen.show() });
      
-    this.lvlupScreen = new LevelUpScreen(this);
+    this.lvlupScreen = new LevelUpScreen(this, this.army.stats);
+    
+    // Debug purposes
+    this.logText = new Text(this, 30, 20, '', 30, 0, 0);
+    window.log = (text) => {
+      this.logText.text += "\n" + text;
+      clearTimeout(window.logTimeout);
+      window.logTimeout = setTimeout(() => {
+        this.logText.text = ''; 
+      }, 3000);
+    }
+    // End Debug purposes
   }
 
   Food(quantity) {
@@ -68,18 +83,30 @@ export default class extends Phaser.State {
   Experience(quantity) {
     this.experience += quantity;
     if (this.experience >= this.experienceNextLevel) {
-      this.experienceNextLevel *= 2;
-      this.experience = 0;
+      this.LevelUp();
     }
+  }
+
+  LevelUp() {
+    this.experienceNextLevel *= 2;
+    this.experience = 0;
+    this.skillPoints++;
   }
 
   update() {
     this.population = this.army.GetPopulation();
+
+    if (this.skillPoints > 0 && !this.lvlupButton.visible) {
+      this.lvlupButton.visible = true;
+    } 
+    else if (this.skillPoints === 0 && this.lvlupButton.visible) {
+      this.lvlupButton.visible = false;
+    }
   }
 
   render () {
     if (__DEV__) {
       //this.game.debug.spriteInfo(this.attackButton, 32, 32)
     }
-  }
+  }  
 }
