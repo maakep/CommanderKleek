@@ -49,9 +49,15 @@ export default class extends Phaser.State {
      
     this.lvlupScreen = new LevelUpScreen(this, this.army.stats);
     
+    let geo = navigator.geolocation.getCurrentPosition((r) => {
+      console.log(r);
+      window.log("long:" + r.coords.longitude + " lat: " + r.coords.latitude);
+    });
+
     // Debug purposes
-    this.logText = new Text(this, 30, 20, '', 30, 0, 0);
+    this.logText = new Text(this, 430, 20, '', 30, 0, 0);
     window.log = (text) => {
+      console.log(text);
       this.logText.text += "\n" + text;
       clearTimeout(window.logTimeout);
       window.logTimeout = setTimeout(() => {

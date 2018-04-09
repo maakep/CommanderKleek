@@ -1,5 +1,6 @@
 import phaser from 'phaser';
 import { Button } from './Button';
+import { Text } from './Text';
 
 class LevelUpScreen extends Phaser.Sprite {
     constructor(state, stats) {
@@ -18,9 +19,19 @@ class LevelUpScreen extends Phaser.Sprite {
         let y = 20;
         for (let unit in this.stats) {
             for (let stat in this.stats[unit].Stats) {
+                let value = this.stats[unit].Stats[stat]().Value;
+                let levelUpFunc = this.stats[unit].Stats[stat]().LevelUp();
+
                 this.addChild(
-                    new Button(this.state, x, y, 'button', 0.1, () => {
-                        window.log(stat);
+                    new Text(this.state, x + 90, y, value, 10, 0, 0.5)
+                )
+                this.addChild(
+                    new Text(this.state, x, y, stat, 10, 0, 0.5)
+                );
+                this.addChild(
+                    new Button(this.state, x + 110, y, 'button', 0.1, () => {
+                        this.stats[unit].Stats[stat]().Value = levelUpFunc;
+                        this.state.skillPoints--;
                     })
                 );
                 y += 20;
